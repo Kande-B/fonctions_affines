@@ -72,7 +72,6 @@
             font-size: 1.3rem;
         }
 
-        /* Style pour les embeds */
         .calculator-frame {
             border: none;
             border-radius: 16px;
@@ -82,7 +81,8 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
-    <!-- NAVBAR (inchangée) -->
+
+    <!-- NAVBAR -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -109,19 +109,315 @@
         </div>
     </nav>
 
-    <!-- HERO, COURS, VIDÉOS, EXERCICES (inchangés) -->
-    <!-- ... (je garde tout ton code original pour ces sections afin de ne pas alourdir le message) ... -->
+    <!-- HERO -->
+    <header id="intro" class="hero-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-white/20 text-white text-sm px-5 py-2 rounded-3xl mb-6">
+                    <span>🎯</span>
+                    Niveau 3<sup>e</sup> • Programme officiel
+                </div>
+                <h1 class="text-6xl font-bold leading-none mb-6">
+                    Les fonctions linéaires<br>expliquées simplement
+                </h1>
+                <p class="text-xl text-white/90 mb-8 max-w-lg">
+                    Salut ! Je suis ton prof virtuel. On va découvrir ensemble ce qu’est une fonction linéaire :
+                    c’est super utile pour la proportionnalité (comme le prix au kilo ou la vitesse).
+                    Pas de stress, tout est clair et avec des exemples du quotidien !
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#cours" onclick="document.getElementById('cours').scrollIntoView({behavior:'smooth'})"
+                       class="bg-white text-blue-600 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:scale-105 transition">
+                        Commencer le cours →
+                    </a>
+                    <a href="#videos" onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})"
+                       class="border border-white/70 hover:border-white text-white px-8 py-4 rounded-3xl font-semibold flex items-center gap-3">
+                        Voir une vidéo (2 min)
+                    </a>
+                </div>
+                <div class="mt-10 flex items-center gap-8 text-sm">
+                    <div class="flex items-center gap-2">
+                        <div class="text-3xl">📏</div>
+                        <div>
+                            <strong>Proportionnalité</strong><br>
+                            <span class="text-white/70">C’est le cœur du sujet</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="text-3xl">📊</div>
+                        <div>
+                            <strong>Graphiques</strong><br>
+                            <span class="text-white/70">Des droites qui passent par l’origine</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="text-3xl">🔢</div>
+                        <div>
+                            <strong>Exercices corrigés</strong><br>
+                            <span class="text-white/70">+ de 10 avec les solutions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="hidden md:block relative">
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+                    <div class="text-center mb-6">
+                        <p class="text-lg font-medium">Exemple du quotidien :</p>
+                        <div class="math-expression text-4xl text-white my-4">f(x) = 2x</div>
+                        <p class="text-white/80">Si une pomme coûte 2 €, alors 3 pommes coûtent f(3) = 6 €</p>
+                    </div>
+                    <div class="h-80 bg-white rounded-2xl p-4">
+                        <canvas id="heroChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- OUTILS INTERACTIFS - VERSION AMÉLIORÉE -->
+    <!-- COURS -->
+    <section id="cours" class="max-w-7xl mx-auto px-6 py-16">
+        <h2 class="section-header text-4xl font-bold mb-12">Le cours complet : tout ce qu’il faut savoir</h2>
+       
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Leçon 1 -->
+            <div class="bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center font-bold">1</div>
+                    <h3 class="text-2xl font-semibold">Qu’est-ce qu’une fonction linéaire ?</h3>
+                </div>
+                <div class="prose text-slate-600">
+                    <p>Une fonction linéaire, c’est une fonction qui suit une <strong>proportionnalité</strong>.</p>
+                    <p class="math-expression text-3xl my-6 text-center">f(x) = a × x</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>a</strong> s’appelle le <strong>coefficient de proportionnalité</strong> (ou coefficient directeur).</li>
+                        <li>La courbe représentative est une <strong>droite qui passe par l’origine (0 ; 0)</strong>.</li>
+                        <li>Exemple : Si tu achètes des bonbons à 3 € le paquet, la fonction est f(x) = 3x.</li>
+                    </ul>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-2xl text-sm">
+                        <strong>Attention :</strong> Une fonction linéaire n’a pas de constante ajoutée (pas de +b). Si tu as +b, c’est une fonction affine !
+                    </div>
+                </div>
+            </div>
+           
+            <!-- Leçon 2 -->
+            <div class="bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center font-bold">2</div>
+                    <h3 class="text-2xl font-semibold">Images et antécédents</h3>
+                </div>
+                <div class="prose text-slate-600">
+                    <p><strong>Image</strong> : tu connais x, tu cherches f(x).</p>
+                    <p class="my-3">Exemple : f(x) = 5x → f(4) = 5 × 4 = <span class="font-bold text-emerald-600">20</span></p>
+                   
+                    <p class="mt-8"><strong>Antécédent</strong> : tu connais f(x), tu cherches x.</p>
+                    <p class="my-3">Exemple : f(x) = 5x et f(x) = 30 → 5x = 30 → x = 30 ÷ 5 = <span class="font-bold text-emerald-600">6</span></p>
+                   
+                    <div class="mt-6 bg-slate-100 p-5 rounded-2xl text-sm">
+                        Astuce : Pour trouver un antécédent, tu fais la division par le coefficient a.
+                    </div>
+                </div>
+            </div>
+           
+            <!-- Leçon 3 -->
+            <div class="bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center font-bold">3</div>
+                    <h3 class="text-2xl font-semibold">Propriétés importantes</h3>
+                </div>
+                <ul class="space-y-6 text-slate-600">
+                    <li class="flex gap-4">
+                        <span class="text-4xl text-blue-200">📈</span>
+                        <div>
+                            <strong>Si a &gt; 0</strong> → la droite monte (croissante)
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="text-4xl text-blue-200">📉</span>
+                        <div>
+                            <strong>Si a &lt; 0</strong> → la droite descend (décroissante)
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="text-4xl text-blue-200">📏</span>
+                        <div>
+                            <strong>Le coefficient a</strong> dit à quelle vitesse la droite monte ou descend.
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="text-4xl text-blue-200">0️⃣</span>
+                        <div>
+                            Si a = 0 → fonction constante (droite horizontale), mais ce n’est pas une fonction linéaire classique.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+        <!-- Représentation graphique -->
+        <div class="mt-16 bg-white rounded-3xl shadow-sm p-10">
+            <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3">
+                <span>📊</span> Comment tracer une fonction linéaire ?
+            </h3>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <p class="mb-6">Pour tracer f(x) = 3x :</p>
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="font-mono bg-slate-900 text-white px-3 py-1 rounded-xl text-lg">1</span>
+                            <div>Tu choisis 3 valeurs de x (ex. : 0, 2, 4)</div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="font-mono bg-slate-900 text-white px-3 py-1 rounded-xl text-lg">2</span>
+                            <div>Tu calcules les images : f(0)=0, f(2)=6, f(4)=12</div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="font-mono bg-slate-900 text-white px-3 py-1 rounded-xl text-lg">3</span>
+                            <div>Tu places les points (0;0), (2;6), (4;12) sur le repère et tu traces la droite.</div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="bg-slate-50 rounded-3xl p-6">
+                    <canvas id="graphDemo" class="w-full h-80"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDÉOS -->
+    <section id="videos" class="bg-slate-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-4xl font-bold mb-4 text-white">Vidéos explicatives (très claires !)</h2>
+            <p class="text-slate-400 mb-12">Regarde ces vidéos courtes faites pour les 3<sup>e</sup>. Elles expliquent tout avec des exemples et des dessins.</p>
+           
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-800 rounded-3xl overflow-hidden">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/87FgV4ZIBfU" title="Qu’est-ce qu’une fonction linéaire ?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-semibold mb-1">Qu’est-ce qu’une fonction linéaire ? (3ᵉ)</h4>
+                        <p class="text-slate-400 text-sm">2 minutes • Découverte algébrique et graphique</p>
+                    </div>
+                </div>
+               
+                <div class="bg-slate-800 rounded-3xl overflow-hidden">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/bgySp9gT8kA" title="Déterminer graphiquement une fonction linéaire" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-semibold mb-1">Déterminer graphiquement la fonction</h4>
+                        <p class="text-slate-400 text-sm">Maths et tiques • Très clair pour lire sur un graphique</p>
+                    </div>
+                </div>
+               
+                <div class="bg-slate-800 rounded-3xl overflow-hidden">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/I5WNPrpprdw" title="Fonctions linéaires : généralités" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-semibold mb-1">Généralités sur les fonctions linéaires</h4>
+                        <p class="text-slate-400 text-sm">Tout le programme en une vidéo pédagogique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXERCICES CORRIGÉS -->
+    <section id="exercices" class="max-w-7xl mx-auto px-6 py-16">
+        <h2 class="section-header text-4xl font-bold mb-12">Exercices corrigés (niveau 3<sup>e</sup>)</h2>
+       
+        <div class="space-y-8">
+            <!-- Exercice 1 -->
+            <div class="exercise-card bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="px-4 py-1 bg-amber-100 text-amber-700 text-sm rounded-3xl">Exercice 1</span>
+                        <h3 class="text-2xl font-semibold mt-4">Calcul d’images et antécédents</h3>
+                    </div>
+                    <button onclick="toggleSolution(1)" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+                        Voir la correction <span class="text-xl" id="arrow1">↓</span>
+                    </button>
+                </div>
+                <p class="mt-6 text-slate-600">Soit f la fonction linéaire définie par f(x) = 4x.</p>
+                <ul class="mt-4 space-y-3 text-slate-600">
+                    <li>1. Calculer f(3) et f(7)</li>
+                    <li>2. Trouver l’antécédent de 24 par f</li>
+                    <li>3. Trouver l’antécédent de −16 par f</li>
+                </ul>
+               
+                <div id="solution1" class="solution mt-8 p-6 bg-emerald-50 rounded-3xl text-emerald-800">
+                    <strong>Correction :</strong><br>
+                    1. f(3) = 4 × 3 = 12<br>
+                    f(7) = 4 × 7 = 28<br><br>
+                    2. 4x = 24 → x = 24 ÷ 4 = 6<br>
+                    3. 4x = −16 → x = −16 ÷ 4 = −4
+                </div>
+            </div>
+           
+            <!-- Exercice 2 -->
+            <div class="exercise-card bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="px-4 py-1 bg-amber-100 text-amber-700 text-sm rounded-3xl">Exercice 2</span>
+                        <h3 class="text-2xl font-semibold mt-4">Reconnaître une fonction linéaire</h3>
+                    </div>
+                    <button onclick="toggleSolution(2)" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+                        Voir la correction <span class="text-xl" id="arrow2">↓</span>
+                    </button>
+                </div>
+                <p class="mt-6 text-slate-600">Parmi les fonctions suivantes, lesquelles sont linéaires ?</p>
+                <ul class="mt-4 grid grid-cols-2 gap-3 text-slate-600">
+                    <li class="flex items-center gap-2"><span class="font-mono">a) g(x) = 7x</span></li>
+                    <li class="flex items-center gap-2"><span class="font-mono">b) h(x) = 3x + 2</span></li>
+                    <li class="flex items-center gap-2"><span class="font-mono">c) k(x) = −2x</span></li>
+                    <li class="flex items-center gap-2"><span class="font-mono">d) m(x) = 5</span></li>
+                </ul>
+               
+                <div id="solution2" class="solution mt-8 p-6 bg-emerald-50 rounded-3xl text-emerald-800">
+                    <strong>Correction :</strong><br>
+                    a) Oui → g(x) = 7x<br>
+                    b) Non (c’est une fonction affine)<br>
+                    c) Oui → k(x) = −2x<br>
+                    d) Non (fonction constante)
+                </div>
+            </div>
+           
+            <!-- Exercice 3 -->
+            <div class="exercise-card bg-white rounded-3xl shadow-sm p-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="px-4 py-1 bg-amber-100 text-amber-700 text-sm rounded-3xl">Exercice 3</span>
+                        <h3 class="text-2xl font-semibold mt-4">Problème concret (proportionnalité)</h3>
+                    </div>
+                    <button onclick="toggleSolution(3)" class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">
+                        Voir la correction <span class="text-xl" id="arrow3">↓</span>
+                    </button>
+                </div>
+                <p class="mt-6 text-slate-600">Un taxi facture 2 € par km parcouru. Écris la fonction linéaire f qui donne le prix en fonction de la distance x (en km).</p>
+                <p class="mt-3">a) Combien coûte un trajet de 12 km ?<br>
+                b) Quelle distance peut-on faire pour 30 € ?</p>
+               
+                <div id="solution3" class="solution mt-8 p-6 bg-emerald-50 rounded-3xl text-emerald-800">
+                    <strong>Correction :</strong><br>
+                    f(x) = 2x<br><br>
+                    a) f(12) = 2 × 12 = 24 €<br>
+                    b) 2x = 30 → x = 15 km
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTILS INTERACTIFS -->
     <section id="interactif" class="bg-slate-100 py-16">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="section-header text-4xl font-bold mb-12">Outils interactifs pour t’entraîner</h2>
            
-            <div class="grid lg:grid-cols-2 gap-8 mb-12">
-                <!-- Calculatrice simple + Graphique Chart.js (tes outils originaux) -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Calculatrice simple -->
                 <div class="bg-white rounded-3xl p-8 shadow-sm">
                     <h3 class="text-2xl font-semibold mb-6">Calculatrice de fonction linéaire</h3>
-                    <!-- Ton code original de calculatrice reste ici -->
                     <div class="flex flex-col gap-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Coefficient a :</label>
@@ -138,8 +434,9 @@
                     </div>
                 </div>
                
+                <!-- Graphique Chart.js -->
                 <div class="bg-white rounded-3xl p-8 shadow-sm">
-                    <h3 class="text-2xl font-semibold mb-6">Tracer ta fonction en direct (Chart.js)</h3>
+                    <h3 class="text-2xl font-semibold mb-6">Tracer ta fonction en direct (simple)</h3>
                     <div class="flex gap-4 mb-6">
                         <div class="flex-1">
                             <label class="block text-xs uppercase tracking-widest mb-1">Coefficient a</label>
@@ -151,48 +448,249 @@
                 </div>
             </div>
 
-            <!-- NOUVEAU : Desmos + NumWorks -->
+            <!-- Desmos + NumWorks -->
             <div class="grid lg:grid-cols-2 gap-10">
                 <!-- Desmos -->
                 <div class="bg-white rounded-3xl p-8 shadow-sm">
                     <h3 class="text-2xl font-semibold mb-6 flex items-center gap-3">
-                        <span>📈</span> Desmos – Traceur de fonctions puissant
+                        📈 Desmos – Traceur de fonctions (très puissant)
                     </h3>
-                    <p class="text-slate-600 mb-6">Tape directement <strong>f(x) = 3x</strong> ou toute autre fonction linéaire. Tu peux zoomer, ajouter plusieurs droites, etc.</p>
+                    <p class="text-slate-600 mb-6">Tape <strong>f(x)=3x</strong> ou toute fonction linéaire. Tu peux zoomer, ajouter des points, comparer plusieurs droites...</p>
                     <iframe src="https://www.desmos.com/calculator" 
                             class="calculator-frame" 
-                            height="550" 
-                            allowfullscreen>
-                    </iframe>
-                    <p class="text-xs text-center text-slate-500 mt-3">Desmos (version complète)</p>
+                            height="580" 
+                            allowfullscreen></iframe>
                 </div>
 
                 <!-- NumWorks -->
                 <div class="bg-white rounded-3xl p-8 shadow-sm">
                     <h3 class="text-2xl font-semibold mb-6 flex items-center gap-3">
-                        <span>🧮</span> NumWorks – Calculatrice de classe
+                        🧮 NumWorks – Calculatrice officielle du collège
                     </h3>
-                    <p class="text-slate-600 mb-6">Exactement la même calculatrice que tu utilises en cours ! Idéale pour calculer des images, antécédents et tracer des fonctions.</p>
-                    
-                    <!-- Embed NumWorks (généré via leur outil officiel) -->
-                    <iframe src="https://www.numworks.com/simulator/?mode=exam" 
+                    <p class="text-slate-600 mb-6">La même calculatrice que tu utilises en classe ! Parfaite pour calculer des images, antécédents et tracer des fonctions.</p>
+                    <iframe src="https://www.numworks.com/simulator/" 
                             class="calculator-frame" 
-                            height="620" 
-                            allowfullscreen>
-                    </iframe>
-                    <p class="text-xs text-center text-slate-500 mt-3">Simulateur officiel NumWorks</p>
+                            height="650" 
+                            allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Le reste de ton code (quiz + footer) reste identique -->
+    <!-- QUIZ -->
+    <section id="quiz" class="max-w-7xl mx-auto px-6 py-16">
+        <h2 class="section-header text-4xl font-bold mb-12">Teste tes connaissances ! (5 questions)</h2>
+       
+        <div id="quizContainer" class="space-y-12">
+            <!-- JS remplit ici -->
+        </div>
+       
+        <div id="resultQuiz" class="hidden text-center py-12">
+            <h3 class="text-3xl font-bold mb-6">Ton score :</h3>
+            <div id="scoreDisplay" class="text-8xl font-bold text-blue-600"></div>
+            <button onclick="restartQuiz()" class="mt-10 bg-blue-600 text-white px-10 py-5 rounded-3xl text-xl">Recommencer le quiz</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-2xl font-medium mb-4">Tu as tout compris ? 🎉</p>
+            <p class="text-slate-400">Ce site est 100 % gratuit et conçu spécialement pour toi en 3<sup>e</sup>.</p>
+            <p class="text-xs text-slate-500 mt-10">Copie-colle tout ce code dans un fichier <strong>index.html</strong> et ouvre-le dans ton navigateur.</p>
+        </div>
+    </footer>
 
     <script>
-        // Tes scripts originaux (heroChart, demoGraph, interactiveChart, calculerFonction, toggleSolution, quiz, etc.)
-        // ... (copie-colle tout ton <script> original ici)
+        // === CONFIG TAILWIND ===
+        function initializeTailwind() {
+            tailwind.config = { content: [], theme: { extend: {} } };
+        }
 
-        // Petite amélioration : on initialise le graphique interactif au chargement
+        // === GRAPH HERO ===
+        function createHeroChart() {
+            const ctx = document.getElementById('heroChart');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [0, 1, 2, 3, 4, 5],
+                    datasets: [{
+                        label: 'f(x) = 2x',
+                        data: [0, 2, 4, 6, 8, 10],
+                        borderColor: '#fff',
+                        borderWidth: 5,
+                        tension: 0,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.2)' }, ticks: { color: '#fff', font: { size: 14 } } },
+                        x: { grid: { color: 'rgba(255,255,255,0.2)' }, ticks: { color: '#fff', font: { size: 14 } } }
+                    }
+                }
+            });
+        }
+
+        // === GRAPH DEMO ===
+        function createDemoGraph() {
+            const ctx = document.getElementById('graphDemo');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [0, 1, 2, 3, 4],
+                    datasets: [{
+                        label: 'f(x) = 3x',
+                        data: [0, 3, 6, 9, 12],
+                        borderColor: '#3b82f6',
+                        borderWidth: 6,
+                        tension: 0,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#3b82f6',
+                        pointBorderWidth: 3,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: true, position: 'top', labels: { font: { size: 16 } } } },
+                    scales: {
+                        y: { title: { display: true, text: 'f(x)', font: { size: 18 } } },
+                        x: { title: { display: true, text: 'x', font: { size: 18 } } }
+                    }
+                }
+            });
+        }
+
+        // === GRAPH INTERACTIF ===
+        let interactiveChartInstance = null;
+        function createInteractiveChart(a = 3) {
+            const ctx = document.getElementById('interactiveChart');
+            if (!ctx) return;
+            if (interactiveChartInstance) interactiveChartInstance.destroy();
+
+            const labels = Array.from({length: 21}, (_, i) => i - 10);
+            const data = labels.map(x => a * x);
+
+            interactiveChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `f(x) = ${a} x`,
+                        data: data,
+                        borderColor: '#3b82f6',
+                        borderWidth: 7,
+                        tension: 0,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: true, position: 'top' } },
+                    scales: {
+                        y: { grid: { color: '#e2e8f0' } },
+                        x: { grid: { color: '#e2e8f0' } }
+                    }
+                }
+            });
+        }
+
+        function updateGraph() {
+            const a = parseFloat(document.getElementById('sliderA').value);
+            document.getElementById('valueA').textContent = a;
+            createInteractiveChart(a);
+        }
+
+        // === CALCULATRICE SIMPLE ===
+        function calculerFonction() {
+            const a = parseFloat(document.getElementById('coeffA').value) || 0;
+            const x = parseFloat(document.getElementById('inputX').value) || 0;
+            const fx = a * x;
+            const resultDiv = document.getElementById('resultat');
+            resultDiv.innerHTML = `
+                f(${x}) = <span class="text-5xl">${fx}</span>
+                <div class="text-sm text-slate-400 mt-2">avec a = ${a}</div>
+            `;
+        }
+
+        // === TOGGLE SOLUTIONS ===
+        function toggleSolution(n) {
+            const sol = document.getElementById('solution' + n);
+            const arrow = document.getElementById('arrow' + n);
+            if (sol.style.display === 'block') {
+                sol.style.display = 'none';
+                arrow.textContent = '↓';
+            } else {
+                sol.style.display = 'block';
+                arrow.textContent = '↑';
+            }
+        }
+
+        // === QUIZ ===
+        let score = 0;
+        const questions = [
+            { q: "Quelle est l’expression d’une fonction linéaire ?", options: ["f(x) = ax + b", "f(x) = ax", "f(x) = a + x", "f(x) = x²"], correct: 1 },
+            { q: "Si f(x) = −5x, quelle est l’image de x = 4 ?", options: ["−20", "20", "−9", "9"], correct: 0 },
+            { q: "La droite représentative passe-t-elle toujours par l’origine ?", options: ["Oui", "Non", "Seulement si a = 0", "Seulement si a > 0"], correct: 0 },
+            { q: "Pour f(x) = 8x, quel est l’antécédent de 32 ?", options: ["4", "256", "24", "40"], correct: 0 },
+            { q: "Si a est négatif, la fonction est...", options: ["Croissante", "Décroissante", "Constante", "Aucune idée"], correct: 1 }
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+           
+            questions.forEach((q, i) => {
+                const div = document.createElement('div');
+                div.className = 'bg-white rounded-3xl p-8 shadow-sm';
+                div.innerHTML = `
+                    <p class="font-semibold text-lg mb-6">${i+1}. ${q.q}</p>
+                    <div class="grid grid-cols-2 gap-4" id="options-${i}"></div>
+                `;
+                container.appendChild(div);
+               
+                const optionsDiv = document.getElementById(`options-${i}`);
+                q.options.forEach((opt, j) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'text-left border border-slate-300 hover:border-blue-500 rounded-2xl px-6 py-4 transition';
+                    btn.textContent = opt;
+                    btn.onclick = () => {
+                        if (j === q.correct) {
+                            btn.classList.add('bg-emerald-100', 'border-emerald-500');
+                            score++;
+                        } else {
+                            btn.classList.add('bg-red-100', 'border-red-500');
+                        }
+                        Array.from(optionsDiv.children).forEach(b => b.disabled = true);
+                    };
+                    optionsDiv.appendChild(btn);
+                });
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.className = 'block mx-auto mt-12 bg-blue-600 hover:bg-blue-700 text-white px-16 py-6 rounded-3xl text-2xl font-semibold';
+            submitBtn.textContent = 'Corriger mon quiz →';
+            submitBtn.onclick = showResults;
+            container.appendChild(submitBtn);
+        }
+
+        function showResults() {
+            document.getElementById('quizContainer').classList.add('hidden');
+            const resultDiv = document.getElementById('resultQuiz');
+            resultDiv.classList.remove('hidden');
+            document.getElementById('scoreDisplay').innerHTML = `${score}/5 <span class="text-4xl">🎉</span>`;
+        }
+
+        function restartQuiz() {
+            score = 0;
+            document.getElementById('quizContainer').classList.remove('hidden');
+            document.getElementById('resultQuiz').classList.add('hidden');
+            renderQuiz();
+        }
+
+        // === INITIALISATION ===
         window.onload = function() {
             initializeTailwind();
             createHeroChart();
@@ -200,7 +698,7 @@
             createInteractiveChart();
             renderQuiz();
            
-            console.log('%c✅ Site des fonctions linéaires chargé avec succès ! Desmos et NumWorks intégrés 🎯', 'color:#3b82f6;font-size:13px');
+            console.log('%c✅ Site Fonctions Linéaires 3ème chargé avec Desmos + NumWorks !', 'color:#3b82f6; font-size:14px');
         };
     </script>
 </body>
